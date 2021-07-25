@@ -7,7 +7,7 @@ class ChairList extends Component {
       return (
         <div key={index} className="col-3">
           <ItemChair
-            // changeColorPutting={this.props.changeColorPutting}
+            isBooking={this.props.isBooking}
             renderChairPutting={this.props.renderChairPutting}
             chairList={chair}
           />
@@ -17,8 +17,8 @@ class ChairList extends Component {
   };
   render() {
     return (
-      <div className="container">
-        <button className="w-50 mb-3 btn btn-info">Chọn ghế</button>
+      <div className="w-50 container">
+        <button className="w-100 mb-3 btn btn-info">Tài xế</button>
         <div className="row">{this.renderChairList()}</div>
       </div>
     );

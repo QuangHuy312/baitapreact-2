@@ -8,7 +8,7 @@ class Home extends Component {
     { SoGhe: 2, TenGhe: "số 2 ", Gia: 100, TrangThai: false },
     { SoGhe: 3, TenGhe: "số 3 ", Gia: 100, TrangThai: false },
     { SoGhe: 4, TenGhe: "số 4 ", Gia: 100, TrangThai: false },
-    { SoGhe: 5, TenGhe: "số 5 ", Gia: 100, TrangThai: false },
+    { SoGhe: 5, TenGhe: "số 5 ", Gia: 100, TrangThai: true },
     { SoGhe: 6, TenGhe: "số 6 ", Gia: 100, TrangThai: false },
     { SoGhe: 7, TenGhe: "số 7 ", Gia: 100, TrangThai: false },
     { SoGhe: 8, TenGhe: "số 8 ", Gia: 100, TrangThai: false },
@@ -43,37 +43,54 @@ class Home extends Component {
 
   state = {
     chairPuttingList: [],
-   
   };
 
   renderChairPutting = (chair) => {
     const cloneChairPutting = [...this.state.chairPuttingList];
-    const foundIndex = cloneChairPutting.findIndex((item)=>{
+    const foundIndex = cloneChairPutting.findIndex((item) => {
       return item.SoGhe === chair.SoGhe;
-    })
-    if(foundIndex === -1){ 
-      const itemChair = { SoGhe : chair.SoGhe , TenGhe : chair.TenGhe , Gia :chair.Gia , TrangThai :chair.TrangThai , quantity : 1}
+    });
+    if (foundIndex === -1) {
+      const itemChair = {
+        SoGhe: chair.SoGhe,
+        TenGhe: chair.TenGhe,
+        Gia: chair.Gia,
+        TrangThai: chair.TrangThai,
+        quantity: 1,
+      };
       cloneChairPutting.push(itemChair);
-    }else{
-      cloneChairPutting[foundIndex].TrangThai = !chair.TrangThai;
+    } else {
+      cloneChairPutting.splice(foundIndex, 1);
     }
-    this.setState({chairPuttingList :cloneChairPutting})
+    this.setState({ chairPuttingList: cloneChairPutting });
+  };
+
+  deleteChairPutting = (val) => {
+    const cloneChairPutting = [...this.state.chairPuttingList];
+    const foundIndex = cloneChairPutting.findIndex((item) => {
+      return item.SoGhe === val.SoGhe;
+    });
+    if (foundIndex !== -1) {
+      cloneChairPutting.splice(foundIndex, 1);
+      this.setState({isBooking :!this.state.isBooking})
+    }
+    this.setState({ chairPuttingList: cloneChairPutting });
   };
 
   render() {
     return (
-      <div>
-        <h1 className="text-success">ĐẶT VÉ XE BUÝT HÃNG CYBERSOFT</h1>
-        <div className="d-flex">
-          <div>
-            <ChairList
-              // changeColorPutting ={this.changeColorPutting}
-              renderChairPutting={this.renderChairPutting}
-              chairList={this.chairList}
-            />
-          </div>
-          <ChairPuttingList chairPuttingList={this.state.chairPuttingList} />
+      <div className="row">
+        <div className="col-6">
+          <ChairList
+            isBooking={this.state.isBooking}
+            renderChairPutting={this.renderChairPutting}
+            chairList={this.chairList}
+          />
         </div>
+        <ChairPuttingList
+          deleteChairPutting={this.deleteChairPutting}
+          chairPuttingList={this.state.chairPuttingList}
+        />
       </div>
     );
   }

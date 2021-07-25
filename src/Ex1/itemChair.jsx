@@ -9,10 +9,14 @@ class ItemChair extends Component {
     this.setState({ isBooking: !this.state.isBooking });
   };
   render() {
+    const { SoGhe, TrangThai } = this.props.chairList;
     let btnClass = this.state.isBooking
-      ? "bg-dark text-white mb-3"
-      : "bg-success text-white mb-3";
-    const { SoGhe } = this.props.chairList;
+      ? "btn btn-secondary text-white mb-3"
+      : "btn btn-success text-white mb-3";
+    if (TrangThai) {
+      btnClass = "btn btn-danger text-white mb-3";
+    }
+    console.log(this.props.chairList)
     return (
       <button
         onClick={() => {
@@ -22,6 +26,7 @@ class ItemChair extends Component {
         chairList={this.props.chairList}
         className={btnClass}
         style={{ width: "50px" }}
+        disabled={TrangThai}
       >
         {SoGhe}
       </button>

@@ -1,0 +1,47 @@
+.content {
+  text-align: center;
+  background-image: url(./imgGlass/background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 99;
+}
+.overlay h3{
+    background: rgba(0,0,0,0.3);
+    color: white;
+    padding: 40px
+}
+.model {
+  /* height: 15rem; */
+  object-fit: cover;
+  object-position: top;
+}
+.card-body{
+    position:absolute;
+    background-image: linear-gradient(rgba(247, 186, 55, 0.5), rgba(241, 60, 60, 0.5));
+    left:0;
+    bottom:0;
+    padding: 1rem;
+    text-align: left;
+}
+.card-title{
+    color: rgb(39, 1, 179);
+}
+.glass-test {
+    position: absolute;
+    top: 27%;
+    right: 30%;
+    width:130px;
+}
+.glass-item{
+    cursor: pointer;
+    padding-bottom: 50px;
+}

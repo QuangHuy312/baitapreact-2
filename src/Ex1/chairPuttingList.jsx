@@ -1,15 +1,14 @@
 import React, { Component } from "react";
 
 class ChairPuttingList extends Component {
-  renderChairPuutingList = () => {
-    console.log(this.props.chairPuttingList);
+  renderChairPuttingList = () => {
     return this.props.chairPuttingList.map((item, index) => {
       return (
-        <div key={index}>
+        <div key={index} className="col-7">
           <h6>
-            Ghế :{item.SoGhe} {item.Gia}$
+            Ghế :Số {item.SoGhe}, Giá : {item.Gia}$
             <a href="#">
-              <button className="btn">[Hủy]</button>
+              <button onClick ={()=>this.props.deleteChairPutting(item)} className="btn btn-danger w-25 ml-4">Hủy</button>
             </a>
           </h6>
         </div>
@@ -22,9 +21,9 @@ class ChairPuttingList extends Component {
             return (total += item.quantity);
       },0);
     return (
-      <div className="text-left">
+      <div className="w-50">
         <h5 className="text-primary">Ds ghế đang đặt ({totalQuantity})</h5>
-        {this.renderChairPuutingList()}
+        {this.renderChairPuttingList()}
       </div>
     );
   }
